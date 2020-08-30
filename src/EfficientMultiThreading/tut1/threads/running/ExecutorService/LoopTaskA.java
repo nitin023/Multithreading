@@ -9,16 +9,16 @@ public class LoopTaskA implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("##### <TASK-" + id + "> STARTING #####");
+        System.out.println("##### <TASK-" + id + "> STARTING #####" + Thread.currentThread().getName());
         for (int i = 10; i >= 0; i--) {
             System.out.println("< " + id + " >" + "TICK TICK - " + i);
             try {
-                TimeUnit.MILLISECONDS.sleep((int) Math.random() * 500);
+                TimeUnit.MILLISECONDS.sleep((int) Math.random() * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("##### <TASK-" + id + "> COMPLETED #####");
+        System.out.println("##### <TASK-" + id + "> COMPLETED #####" + Thread.currentThread().getName());
     }
 
     public LoopTaskA() {
