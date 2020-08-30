@@ -14,7 +14,7 @@ public class LoopTaskC implements Runnable {
         for (int i = 10; i >= 0; i--) {
             System.out.println("[ " + currentThreadName + " ] <" + taskId + "> TICK TICK - " + i);
             try {
-                TimeUnit.MILLISECONDS.sleep(150000);
+                TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
