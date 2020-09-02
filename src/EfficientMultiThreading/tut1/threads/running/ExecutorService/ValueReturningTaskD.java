@@ -1,8 +1,9 @@
-package EfficientMultiThreading.tut1.threads.running.NormalThread;
+package EfficientMultiThreading.tut1.threads.running.ExecutorService;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-public class ValueReturningTaskB implements Runnable{
+public class ValueReturningTaskD implements Callable<TaskResult<String,Integer>> {
     private int a;
     private int b;
     private long sleepTime;
@@ -11,28 +12,22 @@ public class ValueReturningTaskB implements Runnable{
     private static int count = 0;
     private int instanceNumber;
     private String taskId;
-    private ResultListener<Integer> resultListener;
 
-    public ValueReturningTaskB(int a, int b, long sleepTime,ResultListener<Integer> resultListener) {
+    public ValueReturningTaskD(int a, int b, long sleepTime) {
         this.a = a;
         this.b = b;
         this.sleepTime = sleepTime;
         this.instanceNumber = ++count;
-        this.taskId = "ValueReturningFromTaskB-" + instanceNumber;
-        this.resultListener = resultListener;
+        this.taskId = "ValueReturningFromTaskC-" + instanceNumber;
     }
 
     @Override
-    public void run() {
+    public TaskResult<String,Integer> call() throws Exception{
         String currentThreadTime = Thread.currentThread().getName();
         System.out.println("#### [" + currentThreadTime + "] <" + taskId + "> STARTING ####");
-        try {
-            TimeUnit.MILLISECONDS.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        TimeUnit.MILLISECONDS.sleep(sleepTime);
         sum = a + b;
         System.out.println("**** [" + currentThreadTime + "] <" + taskId + "> CALCULATION COMPLETED ****");
-        resultListener.notifyResult(sum);
+        return new TaskResult<>(taskId,sum);
     }
 }
