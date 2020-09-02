@@ -1,18 +1,18 @@
-package EfficientMultiThreading.tut1.threads.running;
+package EfficientMultiThreading.tut1.threads.running.NormalThread;
 
 import java.util.concurrent.TimeUnit;
 
-public class ThirdTechnique {
+public class FourthTechnique {
 
     public static void main(String[] args) {
         System.out.println("Main thread starts here ........");
-        new ThirdTask();
-        new ThirdTask();
+        new Thread(new FourthTask()).start();
+        new Thread(new FourthTask()).start();
         System.out.println("Main thread ends here ........");
     }
 }
 
-class ThirdTask implements Runnable {
+class FourthTask implements Runnable {
 
     private static int count = 0;
     private int id;
@@ -29,8 +29,7 @@ class ThirdTask implements Runnable {
         }
     }
 
-    public ThirdTask() {
+    public FourthTask() {
         this.id = ++count;
-        new Thread(this::run).start();
     }
 }

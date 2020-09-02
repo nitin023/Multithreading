@@ -1,4 +1,4 @@
-package EfficientMultiThreading.tut1.threads.running;
+package EfficientMultiThreading.tut1.threads.running.NormalThread;
 
 import java.util.concurrent.TimeUnit;
 
